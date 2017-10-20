@@ -95,10 +95,9 @@ public class IceCreamConeTester {
         System.out.println("SAVING CONE...\n");
         caretaker.addMemento(ICC.save());
 
-//        System.out.println("User restored to chocolate ice cream.");
-//        ICC.restore(caretaker.getMemento("chocolate"));
-//        displayCurrentCone(ICC);
-
+        System.out.println("User restored to chocolate ice cream.");
+        ICC.restore(caretaker.getMemento("chocolate"));
+        displayCurrentCone(ICC);
 
     }
 }
