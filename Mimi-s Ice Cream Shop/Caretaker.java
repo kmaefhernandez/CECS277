@@ -1,49 +1,52 @@
 package IceCreamCone;
 import java.io.*;
+import java.util.ArrayList;
 
 public class Caretaker {
-
-    //File is overwritten each time method is called??
+    private ArrayList<Memento> mArr = new ArrayList<Memento>();
     public void addMemento(Memento m){
-        try{
-            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("IceCreamList.dat"));
-            out.writeObject(m);
-            out.close();
 
+        try{
+            FileOutputStream fout = new FileOutputStream("IceCreamList.ser");
+            ObjectOutputStream oos = new ObjectOutputStream(fout);
+            mArr.add(m); //add memento to array
+            oos.writeObject(mArr); //write entire array to file
+            oos.close();
+            fout.close();
 
         }catch(FileNotFoundException fnf){
             System.out.println("File was not found.");
+            fnf.printStackTrace();
         }catch(IOException e){
-            System.out.println("Error1");
+            System.out.println("Error writing to file.");
+            e.printStackTrace();
         }
     }
 
     public Memento getMemento(String flavor){
-        Memento m = null;
+        ArrayList<Memento> m = new ArrayList<Memento>();
+        int i = 0;
         try{
-//            System.out.println("inside try\n");
-            boolean invalidFlavor = true;
-            ObjectInputStream in = new ObjectInputStream(new FileInputStream("IceCreamList.dat"));
-            m = (Memento)in.readObject();
-            while(invalidFlavor){
-//                System.out.println("inside while\n");
-                if(m.getFlavor() != flavor){
-//                    System.out.println("flavor does not match\n");
-                    System.out.println(m.getFlavor());
-                    m = (Memento) in.readObject();
-                }else{
-//                    System.out.println("flavor matches\n");
-                    invalidFlavor = true;
+            FileInputStream fin = new FileInputStream("IceCreamList.ser");
+            ObjectInputStream ois = new ObjectInputStream(fin);
+            m = (ArrayList<Memento>)ois.readObject(); //read in and convert object to memento array
+            for(int j = 0; j < m.size(); j++){ //iterate through array
+                if(m.get(j).getFlavor().equals(flavor)){ //check flavor
+                    i = j; //get index of chosen flavor memento
                 }
             }
-
+            ois.close();
+            fin.close();
         }catch(FileNotFoundException fnf){
             System.out.println("File was not found.");
+            fnf.printStackTrace();
         }catch(IOException e){
-            System.out.println("Error2");
+            System.out.println("Error reading from file.");
+            e.printStackTrace();
         }catch(ClassNotFoundException cnf){
             System.out.println("Class not found.");
+            cnf.printStackTrace();
         }
-        return m;
+        return m.get(i);
     }
 }
