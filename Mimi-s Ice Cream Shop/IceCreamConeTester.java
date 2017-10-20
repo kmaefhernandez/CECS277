@@ -1,7 +1,5 @@
 package IceCreamCone;
 
-import java.sql.SQLOutput;
-
 public class IceCreamConeTester {
     /* This class is used to test the functionality of the IceCreamCone class */
 
