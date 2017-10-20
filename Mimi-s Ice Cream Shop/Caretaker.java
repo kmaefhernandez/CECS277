@@ -47,6 +47,6 @@ public class Caretaker {
             System.out.println("Class not found.");
             cnf.printStackTrace();
         }
-        return m.get(i);
+        return m.get(i); //return memento at index i
     }
 }
