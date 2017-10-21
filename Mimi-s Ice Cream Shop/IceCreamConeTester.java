@@ -1,7 +1,5 @@
 package IceCreamCone;
 
-import java.sql.SQLOutput;
-
 public class IceCreamConeTester {
     /* This class is used to test the functionality of the IceCreamCone class */
 
@@ -43,7 +41,7 @@ public class IceCreamConeTester {
         caretaker.addMemento(ICC.save());
 
         System.out.println("CREATING NEW CONE...");
-        ICC = new AdvancedIceCreamCone(3, "strawberry", "waffle");
+        ICC = new AdvancedIceCreamCone(2, "strawberry", "waffle");
         displayNewCone(ICC);
 
         System.out.println("Adding scoop..");
@@ -73,7 +71,7 @@ public class IceCreamConeTester {
         caretaker.addMemento(ICC.save());
 
         System.out.println("CREATING NEW CONE...");
-        ICC = new AdvancedIceCreamCone(2, "vanilla", "regular");
+        ICC = new AdvancedIceCreamCone(0, "vanilla", "regular");
         displayNewCone(ICC);
 
         System.out.println("Adding toppings: fruity pebbles, blueberries, banana");
@@ -95,10 +93,9 @@ public class IceCreamConeTester {
         System.out.println("SAVING CONE...\n");
         caretaker.addMemento(ICC.save());
 
-//        System.out.println("User restored to chocolate ice cream.");
-//        ICC.restore(caretaker.getMemento("chocolate"));
-//        displayCurrentCone(ICC);
-
+        System.out.println("User restored to chocolate ice cream.");
+        ICC.restore(caretaker.getMemento("chocolate"));
+        displayCurrentCone(ICC);
 
     }
 }
