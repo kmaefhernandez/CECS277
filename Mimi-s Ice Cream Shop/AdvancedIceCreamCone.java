@@ -4,63 +4,53 @@ package IceCreamCone;
    flavor of ice cream is allowed. */
 import java.util.*;
 
-public class AdvancedIceCreamCone {
+public class AdvancedIceCreamCone{
     private int numberOfScoops;
     private String flavor;
     private String typeOfCone;
     private ArrayList<String> toppings = new ArrayList<String>();
 
 
-    //the default constructor creates a one scoop, vanilla ice cream cone using the regular type of cone and no toppings
     public AdvancedIceCreamCone() {
         numberOfScoops=1;
         flavor="vanilla";
         typeOfCone="regular";
     }
 
-    /*this constructor lets you create an ice cream code to your liking. It takes in three parameters:
-      the number of scoops, the flavor of the ice cream and the type of cone */
     public AdvancedIceCreamCone(int ns,String flv,String cone) {
         numberOfScoops=ns;
         flavor=flv;
         typeOfCone=cone;
     }
 
-    //this method returns the number of scoops in the cone
     public int getNumberOfScoops () {
         return numberOfScoops;
     }
 
-    //this method returns the ice cream flavor
     public String getFlavor() {
         return flavor;
     }
 
-    //this method returns the type of cone
     public String getTypeOfCone() {
         return typeOfCone;
     }
 
-    //this method allows you to add one scoop of ice cream at a time
     public void addScoop() {
         numberOfScoops=numberOfScoops+1;
     }
-    //this method allows you to change the ice cream flavor
+
     public void setFlavor(String flv) {
         flavor=flv;
     }
 
-    //this method allows you to change the type of cone
     public void setTypeOfCone(String cone) {
         typeOfCone=cone;
     }
 
-    //this method allows you to add  toppings
     public void addToppings(String top) {
         toppings.add(top);
     }
 
-    //this method returns a String with a list of the toppings
     public ArrayList<String> getToppings () {
         return toppings;
     }
@@ -69,14 +59,19 @@ public class AdvancedIceCreamCone {
         return new Memento(numberOfScoops, flavor, typeOfCone, toppings);
     }
 
-    public void restore(Memento m){
-        this.flavor = m.getFlavor();
-        this.numberOfScoops = m.getScoops();
-        this.typeOfCone = m.getCone();
-        this.toppings = m.getToppings();
+    public void restore(ArrayList<Memento> mArr){
+        int i = 0;
+        for(int j = 0; j < mArr.size(); j++){ //iterate through array
+            if(mArr.get(j).getFlavor().equals("chocolate")){ //check flavor
+                i = j; //get index of chosen flavor memento
+            }
+        }
+        this.flavor = mArr.get(i).getFlavor();
+        this.numberOfScoops = mArr.get(i).getScoops();
+        this.typeOfCone = mArr.get(i).getCone();
+        this.toppings = mArr.get(i).getToppings();
     }
 
-    //this method overrides the inherited toString()
     public String toString() {
         return ("Flavor: " + flavor + "\n" +
                 "Number of Scoops: " + numberOfScoops + "\n" +
