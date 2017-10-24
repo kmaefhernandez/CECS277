@@ -26,7 +26,7 @@ public class Caretaker {
         }
     }
 
-    public ArrayList<Memento> getMemento(String flavor){
+    public ArrayList<Memento> getMemento(){
         ArrayList<Memento> mArr = new ArrayList<Memento>();
         ObjectInputStream ois = null;
         Memento m = null;
