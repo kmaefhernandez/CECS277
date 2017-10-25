@@ -1,6 +1,6 @@
 package IceCreamCone;
 
-import java.util.ArrayList;
+import java.io.IOException;
 
 public class IceCreamConeTester {
     /* This class is used to test the functionality of the IceCreamCone class */
@@ -17,10 +17,9 @@ public class IceCreamConeTester {
         System.out.println(ICC);
     }
 
-    public static void main(String [] args) {
+    public static void main(String [] args) throws IOException {
         Caretaker caretaker = new Caretaker();
         AdvancedIceCreamCone ICC = new AdvancedIceCreamCone();
-        ArrayList<Memento> mArr = new ArrayList<Memento>();
 
         displayNewCone(ICC);
         System.out.println("Adding scoop...");
@@ -41,7 +40,7 @@ public class IceCreamConeTester {
         displayCurrentCone(ICC);
 
         System.out.println("SAVING CONE...\n");
-        mArr.add(ICC.save());
+        caretaker.addMemento(ICC.save());
 
         System.out.println("CREATING NEW CONE...");
         ICC = new AdvancedIceCreamCone(3, "strawberry", "waffle");
@@ -71,7 +70,7 @@ public class IceCreamConeTester {
 
         displayCurrentCone(ICC);
         System.out.println("SAVING CONE...\n");
-        mArr.add(ICC.save());
+        caretaker.addMemento(ICC.save());
 
         System.out.println("CREATING NEW CONE...");
         ICC = new AdvancedIceCreamCone(2, "vanilla", "regular");
@@ -94,11 +93,10 @@ public class IceCreamConeTester {
 
         displayCurrentCone(ICC);
         System.out.println("SAVING CONE...\n");
-        mArr.add(ICC.save());
-        caretaker.addMemento(mArr);
+        caretaker.addMemento(ICC.save());
 
         System.out.println("User restored to chocolate ice cream.");
-        ICC.restore(caretaker.getMemento());
+        ICC.restore(caretaker.getMemento("chocolate"));
         displayCurrentCone(ICC);
 
 
