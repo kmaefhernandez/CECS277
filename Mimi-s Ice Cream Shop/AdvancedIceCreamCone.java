@@ -59,17 +59,11 @@ public class AdvancedIceCreamCone{
         return new Memento(numberOfScoops, flavor, typeOfCone, toppings);
     }
 
-    public void restore(ArrayList<Memento> mArr){
-        int i = 0;
-        for(int j = 0; j < mArr.size(); j++){ //iterate through array
-            if(mArr.get(j).getFlavor().equals("chocolate")){ //check flavor
-                i = j; //get index of chosen flavor memento
-            }
-        }
-        this.flavor = mArr.get(i).getFlavor();
-        this.numberOfScoops = mArr.get(i).getScoops();
-        this.typeOfCone = mArr.get(i).getCone();
-        this.toppings = mArr.get(i).getToppings();
+    public void restore(Memento m){
+        this.flavor = m.getFlavor();
+        this.numberOfScoops = m.getScoops();
+        this.typeOfCone = m.getCone();
+        this.toppings = m.getToppings();
     }
 
     public String toString() {
