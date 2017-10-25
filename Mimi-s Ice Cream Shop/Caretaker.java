@@ -1,62 +1,40 @@
 package IceCreamCone;
 import java.io.*;
-import java.util.ArrayList;
 
-public class Caretaker {
-    public void addMemento(ArrayList<Memento> list){
-        ObjectOutputStream oos = null;
-        try{
-            oos = new ObjectOutputStream(new FileOutputStream("IceCreamList.ser"));
-            for (Memento m : list){
-                oos.writeObject(m); //writing individual objects to file. NOT the entire arrayList itself
-            }
+public class Caretaker{
+    private ObjectOutputStream oos = null;
 
-        }catch (IOException ioException) {
-            System.err.println("Error opening file.");
-            ioException.printStackTrace();
-        }finally{
-            try{
-                if(oos != null){
-                    oos.close();
-                }
-            }catch(IOException e){
-                System.out.println("Error closing file.");
-                e.printStackTrace();
-            }
-        }
+    Caretaker() throws IOException {
+        oos = new ObjectOutputStream(new FileOutputStream("IceCreamList.ser"));
     }
 
-    public ArrayList<Memento> getMemento(){
-        ArrayList<Memento> mArr = new ArrayList<Memento>();
-        ObjectInputStream ois = null;
+    public void addMemento(Memento m) throws IOException{
+        oos.writeObject(m);
+    }
+
+    public Memento getMemento(String flavor) throws IOException{
         Memento m = null;
+        oos.close();
+
         try{
-            ois = new ObjectInputStream(new FileInputStream("IceCreamList.ser"));
-            while(true){
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream("IceCreamList.ser"));
+
+            do{ // read in memento until correct flavor (chocolate)
                 m = (Memento) ois.readObject();
-                mArr.add(m); //adding all memento objects back to arrayList.
-            }
-        }catch (EOFException eofException) {
-            return mArr;
+            }while(!m.getFlavor().equals(flavor));
+
+
+        }catch(EOFException eof){
+            eof.printStackTrace();
+            return m;
         }catch(FileNotFoundException fnf){
             System.out.println("File was not found.");
             fnf.printStackTrace();
-        }catch(IOException e){
-            System.out.println("Error reading from file.");
-            e.printStackTrace();
         }catch(ClassNotFoundException cnf){
             System.out.println("Class not found.");
             cnf.printStackTrace();
-        }finally{
-            try{
-                if (ois != null) {
-                    ois.close();
-                }
-            }catch(IOException e){
-                System.out.println("Error reading from file.");
-                e.printStackTrace();
-            }
         }
-        return mArr;
+
+        return m;
     }
 }
