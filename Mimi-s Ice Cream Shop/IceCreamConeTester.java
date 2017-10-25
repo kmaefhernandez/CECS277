@@ -1,22 +1,46 @@
+/* Jon Ham
+ * Kristen Mae Hernandez
+ * October 26, 2017
+ * Purpose: This program tests the functionality of the AdvancedIceCreamCone,
+ * Memento, and Caretaker classes. It simulates the Memento Design Pattern.
+ */
 package IceCreamCone;
 
 import java.io.IOException;
 
+/**
+ * This program tests the functionality of the AdvancedIceCreamCone,
+ * Memento, and Caretaker classes.
+ * @author Jon Ham
+ * @author Kristen Mae Hernandez
+ */
 public class IceCreamConeTester {
-    /* This class is used to test the functionality of the IceCreamCone class */
 
+	/**
+	 * Displays the current ice cream cone
+	 * @param ICC ice cream cone
+	 */
     public static void displayCurrentCone(AdvancedIceCreamCone ICC){
         System.out.println("Current Cone:\n" +
                 "-------------");
         System.out.println(ICC);
     }
 
+    /**
+     * Displays the newly created ice cream cone
+     * @param ICC ice cream cone
+     */
     public static void displayNewCone(AdvancedIceCreamCone ICC){
         System.out.println("New Cone:\n" +
                 "-------------");
         System.out.println(ICC);
     }
 
+    /**
+     * Tests the functionality of Caretaker, Memento, and AdvancedIceCreamCone
+     * @param args command line arguments
+     * @throws IOException input/output stream exceptions
+     */
     public static void main(String [] args) throws IOException {
         Caretaker caretaker = new Caretaker();
         AdvancedIceCreamCone ICC = new AdvancedIceCreamCone();
