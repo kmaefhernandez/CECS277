@@ -27,7 +27,7 @@ public class EarthText implements EarthCellPhone {
 
     @Override
     public void readMessage(String languageType, String fileName){
-        //read message to file if english
+        //read message from file if english
         if(languageType.equalsIgnoreCase("earth")){
             try{
                 Scanner in = new Scanner(new File(fileName));
