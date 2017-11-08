@@ -1,10 +1,30 @@
+/* Kristen Mae Hernandez
+ * Jon Ham
+ * November 9, 2017
+ * Purpose: The purpose of this program is to create an EarthText which
+ * translates a text from another language into English if it is not already
+ * English.
+ */
 package Projects.FileIO;
 import java.io.*;
 import java.util.*;
 
+/**
+ * This program implements the EarthCellphone interface which can read, send, and translate text
+ * @author Jon Ham
+ * @author Kristen Mae Hernandez
+ */
+
 public class EarthText implements EarthCellPhone {
     LanguageAdapter languageAdapter;
 
+    /**
+     * Sends a text message to the file if it is in English
+     * @param languageType The type of language
+     * @param message The text message
+     * @param fileName The name of the file
+     * @throws InvalidLanguageException An Invalid Language Exception
+     */
     @Override
     public void sendMessage(String languageType, char[] message, String fileName) throws InvalidLanguageException{
         //send message to file if english
@@ -25,6 +45,11 @@ public class EarthText implements EarthCellPhone {
         }
     }
 
+    /**
+     * Reads a message from the file if it is in English
+     * @param languageType The type of language
+     * @param fileName The name of the file
+     */
     @Override
     public void readMessage(String languageType, String fileName){
         //read message from file if english
