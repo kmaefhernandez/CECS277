@@ -1,3 +1,9 @@
+/**
+* Jon Ham
+* Kristen Mae Hernandez
+* November 9, 2017
+* Purpose: The purpose of this class is to demo FileIO.
+*/
 package Projects.FileIO;
 import java.util.*;
 
